@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 325 30% 98%;
+    --foreground: 325 10% 15%;
+
+    --card: 325 30% 99%;
+    --card-foreground: 325 10% 15%;
+
+    --popover: 325 30% 99%;
+    --popover-foreground: 325 10% 15%;
+
+    --primary: 325 95% 65%;
+    --primary-foreground: 325 10% 99%;
+
+    --secondary: 265 80% 75%;
+    --secondary-foreground: 265 10% 99%;
+
+    --muted: 325 20% 92%;
+    --muted-foreground: 325 10% 45%;
+
+    --accent: 265 80% 92%;
+    --accent-foreground: 265 10% 15%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 325 30% 90%;
+    --input: 325 30% 90%;
+    --ring: 325 95% 65%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 325 30% 8%;
+    --foreground: 325 10% 98%;
+
+    --card: 325 30% 12%;
+    --card-foreground: 325 10% 98%;
+
+    --popover: 325 30% 12%;
+    --popover-foreground: 325 10% 98%;
+
+    --primary: 325 95% 65%;
+    --primary-foreground: 325 10% 98%;
+
+    --secondary: 265 80% 45%;
+    --secondary-foreground: 265 10% 98%;
+
+    --muted: 325 20% 18%;
+    --muted-foreground: 325 10% 65%;
+
+    --accent: 265 80% 25%;
+    --accent-foreground: 265 10% 98%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 325 30% 20%;
+    --input: 325 30% 20%;
+    --ring: 325 95% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+}
+
+.gradient-bg {
+  @apply bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10;
+}
+
+.section-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f9a8d4' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.blob {
+  border-radius: 42% 56% 72% 28% / 42% 42% 56% 48%;
+  animation: blob-animation 8s linear infinite;
+}
+
+@keyframes blob-animation {
+  0% {
+    border-radius: 42% 56% 72% 28% / 42% 42% 56% 48%;
+  }
+  25% {
+    border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 40%;
+  }
+  75% {
+    border-radius: 56% 44% 30% 70% / 40% 40% 60% 60%;
+  }
+  100% {
+    border-radius: 42% 56% 72% 28% / 42% 42% 56% 48%;
+  }
+}
+
+.skill-bar {
+  height: 6px;
+  @apply bg-muted rounded-full overflow-hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  @apply bg-gradient-to-r from-primary to-secondary rounded-full;
+  animation: skill-fill 1.5s ease-out forwards;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+@keyframes skill-fill {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.timeline-dot {
+  @apply w-4 h-4 rounded-full bg-primary absolute -left-2 z-10;
+}
+
+.timeline-line {
+  @apply w-0.5 bg-border absolute top-4 bottom-0 left-0;
+}
+
+.project-card {
+  @apply relative overflow-hidden rounded-xl transition-all duration-300;
+  box-shadow: 0 10px 40px -15px rgba(0, 0, 0, 0.1);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
+}
+
+.project-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent 
+         opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.contact-input {
+  @apply bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary;
+}
+
+.scroll-indicator {
+  @apply absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center;
+}
+
+.scroll-indicator .mouse {
+  @apply w-8 h-14 border-2 border-primary/50 rounded-full flex justify-center p-1;
+}
+
+.scroll-indicator .wheel {
+  @apply w-1.5 h-3 bg-primary rounded-full opacity-75;
+  animation: scroll 1.5s ease-out infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+    opacity: 0.75;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+}
+
+.section-divider {
+  position: relative;
+  height: 150px;
+  margin-top: -75px;
+  margin-bottom: -75px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.section-divider svg {
+  position: absolute;
+  width: 100%;
+  height: 150px;
+}
+
+.section-divider.wave-top {
+  transform: rotate(180deg);
+}
+
