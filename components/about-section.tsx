@@ -19,7 +19,7 @@ export default function AboutSection() {
   const contactInfo = [
     { icon: Phone, label: "Phone", value: "+977 9749418772" },
     { icon: MapPin, label: "Location", value: "Koteshwor, Kathmandu" },
-    { icon: Mail, label: "Email", value: "jyotikoirala@example.com" },
+    { icon: Mail, label: "Email", value: "jyotikoirala58@gmail.com" },
     { icon: Briefcase, label: "Freelance", value: "Available" },
   ];
 
